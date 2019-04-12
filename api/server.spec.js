@@ -82,7 +82,7 @@ describe("server.js", () => {
 
     it("should return error message if title is blank", () => {
       return request(server)
-        .post("/")
+        .post("/api/games")
         .send({ ...pacman, title: "" })
         .then(response => {
           expect(response.body).toEqual({
@@ -93,7 +93,7 @@ describe("server.js", () => {
 
     it("should return created game", () => {
       return request(server)
-        .post("/")
+        .post("/api/games")
         .send({ ...pacman })
         .then(response => {
           expect(response.body).toEqual({ ...pacman, id: 1 });
@@ -132,7 +132,7 @@ describe("server.js", () => {
         .send(invaders);
 
       const games = await request(server).get("/api/games");
-      expect(games.length).toBe(2);
+      expect(games).toEqual(2);
     });
   });
 });
