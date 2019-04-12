@@ -11,16 +11,16 @@ server.get('/', async (req, res) => {
 });
 
 server.post('/api/games', async (req, res) => {
-  const savedGames = await games.getAll();
-
-  res.status(200).json(savedGames);
-});
-
-server.get('/api/games', async (req, res) => {
   const gameInfo = req.body;
   const newGame = await games.insert(gameInfo);
 
   res.status(200).json(newGame);
+});
+
+server.get('/api/games', async (req, res) => {
+  const savedGames = await games.getAll();
+
+  res.status(200).json(savedGames);
 });
 
 module.exports = server;
