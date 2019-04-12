@@ -7,7 +7,7 @@ const server = express();
 server.use(express.json());
 
 server.get('/', async (req, res) => {
-  res.status(200).json({ message: "Welcome to Lambda Testing Sprint Challenge 2019" });
+  res.status(200).json({ message: "Welcome to Testing Sprint Challenge - Lambda 2019" });
 });
 
 server.post('/api/games', async (req, res) => {
