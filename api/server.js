@@ -14,9 +14,12 @@ server.get("/", async (req, res) => {
 
 server.post("/api/games", async (req, res) => {
   const gameInfo = req.body;
-  // const savedGames = await games.getAll();
+  const savedGames = await games.getAll();
+  const titles = savedGames.map(obj => obj.title);
 
-  if (gameInfo.title && gameInfo.genre) {
+  if (titles.includes(gameInfo.title)) {
+    res.status(405).json({ error: "Game title already exists" });
+  } else if (gameInfo.title && gameInfo.genre) {
     const newGame = await games.insert(gameInfo);
 
     res.status(201).json(newGame);

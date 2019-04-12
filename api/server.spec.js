@@ -99,7 +99,7 @@ describe("server.js", () => {
       return request(server)
         .post("/api/games")
         .send(pacman)
-        .expect(422);
+        .expect(405);
     });
 
     it("should return error message if title already exists", async () => {
@@ -112,7 +112,7 @@ describe("server.js", () => {
         .send(pacman)
         .then(response => {
           expect(response.body).toEqual({
-            error: "Game title already exists in database"
+            error: "Game title already exists"
           });
         });
     });
