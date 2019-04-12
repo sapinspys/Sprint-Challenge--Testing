@@ -186,6 +186,12 @@ describe("server.js", () => {
         .expect("Content-Type", /json/);
     });
 
+    it("should return 404 status code", async () => {
+      return request(server)
+        .get("/api/games/1")
+        .expect(404);
+    });
+
     it("should return error message if no game is found", async () => {
       return request(server)
         .get("/api/games/1")
