@@ -25,30 +25,38 @@ In this challenge use `Test Driven Development` to build a RESTful API using Nod
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. In Jest, what are the differences between `describe()` and `it()` globals, and what are good uses for them?
+
+describe() is used for organizing similar tests together by label. It() is how you create a test with jest.
+
 1. What is the point of `Test Driven Development`? What do you think about this approach?
+
+To let your tests drive development instead of testing after development. It feels unnatural to me but I think it's because I need to practice. I definitely think TDD is important because it allows the developer to begin thinking about how data flows first.
+
 1. Mention three types of automated tests.
+
+Unit testing, integration testing, component testing, snapshot testing. 
 
 ## Project Set Up
 
-- [ ] fork and clone this repository.
-- [ ] **CD into the folder** where you downloaded the repository.
-- [ ] run `yarn` or `npm i` to download all dependencies.
-- [ ] type `yarn test` or `npm test` to run the tests. The `test` script is already configured.
+- [X] fork and clone this repository.
+- [X] **CD into the folder** where you downloaded the repository.
+- [X] run `yarn` or `npm i` to download all dependencies.
+- [X] type `yarn test` or `npm test` to run the tests. The `test` script is already configured.
 
 ## Minimum Viable Product
 
 Your finished project must include all of the following requirements:
 
-- [ ] use `jest` and `supertest` to write the tests.
-- [ ] Write the **tests BEFORE** writing the route handlers.
-- [ ] Your API must be have `POST` and `GET` endpoints for `/games`.
-- [ ] Write a **minimum** of three tests per endpoint.
+- [X] use `jest` and `supertest` to write the tests.
+- [X] Write the **tests BEFORE** writing the route handlers.
+- [X] Your API must be have `POST` and `GET` endpoints for `/games`.
+- [X] Write a **minimum** of three tests per endpoint.
 
 Below is a product specification covering the requirements for your endpoints.
 
 ### POST /games
 
-- [ ] The `POST /games` endpoint should take in an object that looks like this
+- [X] The `POST /games` endpoint should take in an object that looks like this
 
   ```js
   {
@@ -58,13 +66,13 @@ Below is a product specification covering the requirements for your endpoints.
   }
   ```
 
-- [ ] In the route handler, validate that the required fields are included inside the body. If the information is incomplete, return a `422` status code.
-- [ ] Write tests to verify that the endpoint returns the correct HTTP status code when receiving correct and incorrect game data.
+- [X] In the route handler, validate that the required fields are included inside the body. If the information is incomplete, return a `422` status code.
+- [X] Write tests to verify that the endpoint returns the correct HTTP status code when receiving correct and incorrect game data.
 
 ### GET /games
 
-- [ ] The `GET /games` endpoint should return the list of games and HTTP status code 200.
-- [ ] Write a test to make sure this endpoint always returns an array, even if there are no games stored. If there are no games to return, the endpoint should return an empty array.
+- [X] The `GET /games` endpoint should return the list of games and HTTP status code 200.
+- [X] Write a test to make sure this endpoint always returns an array, even if there are no games stored. If there are no games to return, the endpoint should return an empty array.
 
 ## Stretch Problems
 
