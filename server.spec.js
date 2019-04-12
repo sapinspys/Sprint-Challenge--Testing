@@ -4,7 +4,9 @@ const server = require('./server.js');
 describe('server.js', () => {
   describe('GET /', () => {
     it('should return 200 OK status code', () => {
-
+      return request(server)
+        .get("/")
+        .expect(200)
     })
 
     it('should return JSON format response', () => {
@@ -24,7 +26,10 @@ describe('server.js', () => {
     }
     
     it('should return 201 OK status code on sucess', () => {
-      
+      return request(server)
+      .post("/api/games")
+      .send(pacman)
+      .expect(201)
     });
 
     it('should return 422 status code if required fields are blank', () => {
@@ -46,7 +51,9 @@ describe('server.js', () => {
 
   describe('GET /api/games', () => {
     it('should return 200 OK status code', () => {
-      
+      return request(server)
+      .get("/api/games")
+      .expect(200)
     });
 
     it('should return JSON format response', () => {
