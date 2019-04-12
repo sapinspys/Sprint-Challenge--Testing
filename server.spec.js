@@ -2,6 +2,18 @@ const request = require("supertest");
 const server = require("./server.js");
 
 describe("server.js", () => {
+  const pacman = {
+    title: "Pacman",
+    genre: "Arcade",
+    releaseYear: 1980 
+  };
+
+  const invaders = {
+    title: "Space Invaders",
+    genre: "Arcade",
+    releaseYear: 1978 
+  };
+
   describe("GET /", () => {
     it("should return 200 OK status code", () => {
       return request(server)
@@ -9,7 +21,7 @@ describe("server.js", () => {
         .expect(200);
     });
 
-    it("should return JSON format response", () => {
+    it("should return JSON format response on success", () => {
       return request(server)
         .get("/")
         .expect("Content-Type", /json/);
@@ -19,12 +31,6 @@ describe("server.js", () => {
   });
 
   describe("POST /api/games", () => {
-    const pacman = {
-      title: "Pacman", // required
-      genre: "Arcade", // required
-      releaseYear: 1980 // not required
-    };
-
     it("should return 201 OK status code with all data", () => {
       return request(server)
         .post("/api/games")
@@ -37,6 +43,13 @@ describe("server.js", () => {
         .post("/api/games")
         .send({ ...pacman, releaseYear: null })
         .expect(201);
+    });
+
+    it("should return JSON format response on success", () => {
+      return request(server)
+        .post("/api/games")
+        .send(pacman)
+        .expect("Content-Type", /json/);
     });
 
     it("should return 422 status code if title is blank", () => {
@@ -53,12 +66,6 @@ describe("server.js", () => {
         .expect(422);
     });
 
-    it("should return JSON format response", () => {
-      return request(server)
-        .get("/api/games")
-        .expect("Content-Type", /json/);
-    });
-
     it("should return error message if required fields are blank", () => {});
 
     it("should return created game", () => {});
@@ -71,14 +78,26 @@ describe("server.js", () => {
         .expect(200);
     });
 
-    it("should return JSON format response", () => {
+    it("should return JSON format response on success", () => {
       return request(server)
         .get("/api/games")
         .expect("Content-Type", /json/);
     });
 
-    it("should return an empty array if there are no games to return", () => {});
+    it("should return an empty array if there are no games to return", () => {
+      return request(server)
+      .get("/api/games")
+      .then(response => {
+        expect(response.body).toEqual([]);
+      });
+    });
 
-    it("should return an array of all games", () => {});
+    it("should return an array of all games", async () => {
+      await request(server).post('/api/games').send(pacman)
+      await request(server).post('/api/games').send(invaders)
+
+      const games = await request(server).get('/api/games')
+      expect(games.length).toBe(2);
+    });
   });
 });
