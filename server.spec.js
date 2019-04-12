@@ -42,6 +42,7 @@ describe('server.js', () => {
     it('should return created game', () => {
       
     })
+  })
 
   describe('GET /api/games', () => {
     it('should return 200 OK status code', () => {
@@ -49,6 +50,10 @@ describe('server.js', () => {
     });
 
     it('should return JSON format response', () => {
+      
+    })
+
+    it('should return an empty array if there are no games to return', () => {
       
     })
 
