@@ -91,6 +91,32 @@ describe("server.js", () => {
         });
     });
 
+    it("should return 405 status code if title already exists", async () => {
+      await request(server)
+        .post("/api/games")
+        .send(pacman);
+
+      return request(server)
+        .post("/api/games")
+        .send(pacman)
+        .expect(422);
+    });
+
+    it("should return error message if title already exists", async () => {
+      await request(server)
+        .post("/api/games")
+        .send(pacman);
+
+      return request(server)
+        .post("/api/games")
+        .send(pacman)
+        .then(response => {
+          expect(response.body).toEqual({
+            error: "Game title already exists in database"
+          });
+        });
+    });
+
     it("should return created game", () => {
       return request(server)
         .post("/api/games")

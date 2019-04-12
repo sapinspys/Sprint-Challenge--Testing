@@ -14,6 +14,7 @@ server.get("/", async (req, res) => {
 
 server.post("/api/games", async (req, res) => {
   const gameInfo = req.body;
+  // const savedGames = await games.getAll();
 
   if (gameInfo.title && gameInfo.genre) {
     const newGame = await games.insert(gameInfo);
