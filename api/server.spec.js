@@ -126,7 +126,7 @@ describe("server.js", () => {
       await request(server)
         .post("/api/games")
         .send(pacman);
-        
+
       await request(server)
         .post("/api/games")
         .send(invaders);
