@@ -165,8 +165,8 @@ describe("server.js", () => {
     });
   });
 
-  describe('GET /api/games/:id', async () => {
-    it("should return 200 OK status code", () => {
+  describe('GET /api/games/:id', () => {
+    it("should return 200 OK status code", async () => {
       await request(server)
         .post("/api/games")
         .send(pacman);
@@ -186,6 +186,14 @@ describe("server.js", () => {
         .expect("Content-Type", /json/);
     });
 
+    it("should return error message if no game is found", async () => {
+      return request(server)
+        .get("/api/games/1")
+        .then(response => {
+          expect(response.body).toEqual({ error: "Game not found" });
+        });
+    });
+
     it("should return information about a single game", async () => {
       await request(server)
         .post("/api/games")
@@ -194,7 +202,7 @@ describe("server.js", () => {
       return request(server)
         .get("/api/games/1")
         .then(response => {
-          expect(response.body).toEqual({ ...pacman, id: 2 });
+          expect(response.body).toEqual({ ...pacman, id: 1 });
         });
     });
   });

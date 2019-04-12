@@ -34,4 +34,14 @@ server.get("/api/games", async (req, res) => {
   res.status(200).json(savedGames);
 });
 
+server.get("/api/games/:id", async (req, res) => {
+  const game = await games.getById(req.params.id);
+
+  if (game) {
+    res.status(200).json(game);
+  } else {
+    res.status(404).json({ error: "Game not found" });
+  }
+});
+
 module.exports = server;
