@@ -164,4 +164,38 @@ describe("server.js", () => {
         });
     });
   });
+
+  describe('GET /api/games/:id', async () => {
+    it("should return 200 OK status code", () => {
+      await request(server)
+        .post("/api/games")
+        .send(pacman);
+
+      return request(server)
+        .get("/api/games/1")
+        .expect(200);
+    });
+
+    it("should return JSON format response on success", async () => {
+      await request(server)
+        .post("/api/games")
+        .send(pacman);
+
+      return request(server)
+        .get("/api/games/1")
+        .expect("Content-Type", /json/);
+    });
+
+    it("should return information about a single game", async () => {
+      await request(server)
+        .post("/api/games")
+        .send(pacman);
+
+      return request(server)
+        .get("/api/games/1")
+        .then(response => {
+          expect(response.body).toEqual({ ...pacman, id: 2 });
+        });
+    });
+  });
 });
