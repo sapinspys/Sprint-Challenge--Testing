@@ -38,7 +38,7 @@ describe("server.js", () => {
         .get("/")
         .then(response => {
           expect(response.body).toEqual({
-            message: "Welcome to Lambda Testing Sprint Challenge 2019"
+            message: "Welcome to Testing Sprint Challenge - Lambda 2019"
           });
         });
     });
@@ -131,8 +131,11 @@ describe("server.js", () => {
         .post("/api/games")
         .send(invaders);
 
-      const games = await request(server).get("/api/games");
-      expect(games).toEqual(2);
+      return request(server)
+        .get("/api/games")
+        .then(response => {
+          expect(response.body.length).toEqual(2);
+        });
     });
   });
 });

@@ -11,6 +11,7 @@ async function insert(hobbit) {
   return db('games').where({id}).first();
 }
 
-function getAll() {
-  return db('games');
+async function getAll() {
+  const games = await db('games')
+  return games
 }
