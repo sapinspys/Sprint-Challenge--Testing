@@ -16,7 +16,36 @@ describe('server.js', () => {
     })
   })
 
-  describe('GET /', () => {
+  describe('POST /api/games', () => {
+    const pacman =   {
+      title: 'Pacman', // required
+      genre: 'Arcade', // required
+      releaseYear: 1980 // not required
+    }
+    
+    it('should return 201 OK status code', () => {
+      
+    });
 
+    it('should return JSON format response', () => {
+      
+    })
+
+    it('should return created game', () => {
+      
+    })
+
+  describe('GET /api/games', () => {
+    it('should return 200 OK status code', () => {
+      
+    });
+
+    it('should return JSON format response', () => {
+      
+    })
+
+    it('should return all games', () => {
+      
+    })
   })
 })

@@ -47,10 +47,10 @@ Unit testing, integration testing, component testing, snapshot testing.
 
 Your finished project must include all of the following requirements:
 
-- [ ] use `jest` and `supertest` to write the tests.
-- [ ] Write the **tests BEFORE** writing the route handlers.
-- [ ] Your API must be have `POST` and `GET` endpoints for `/games`.
-- [ ] Write a **minimum** of three tests per endpoint.
+- [X] use `jest` and `supertest` to write the tests.
+- [X] Write the **tests BEFORE** writing the route handlers.
+- [X] Your API must be have `POST` and `GET` endpoints for `/games`.
+- [X] Write a **minimum** of three tests per endpoint.
 
 Below is a product specification covering the requirements for your endpoints.
 
