@@ -23,7 +23,15 @@ describe('server.js', () => {
       releaseYear: 1980 // not required
     }
     
-    it('should return 201 OK status code', () => {
+    it('should return 201 OK status code on sucess', () => {
+      
+    });
+
+    it('should return 422 status code if required fields are blank', () => {
+      
+    });
+
+    it('should return error message if required fields are blank', () => {
       
     });
 
@@ -44,7 +52,7 @@ describe('server.js', () => {
       
     })
 
-    it('should return all games', () => {
+    it('should return an array of all games', () => {
       
     })
   })
