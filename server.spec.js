@@ -25,15 +25,32 @@ describe('server.js', () => {
       releaseYear: 1980 // not required
     }
     
-    it('should return 201 OK status code on sucess', () => {
+    it('should return 201 OK status code with all data', () => {
       return request(server)
       .post("/api/games")
       .send(pacman)
       .expect(201)
     });
 
-    it('should return 422 status code if required fields are blank', () => {
-      
+    it('should return 201 OK status even with missing year', () => {
+      return request(server)
+      .post("/api/games")
+      .send({...pacman, releaseYear: null})
+      .expect(201)
+    });
+
+    it('should return 422 status code if title is blank', () => {
+      return request(server)
+      .post("/api/games")
+      .send({...pacman, title: ""})
+      .expect(422)
+    });
+
+    it('should return 422 status code if genre is blank', () => {
+      return request(server)
+      .post("/api/games")
+      .send({...pacman, genre: ""})
+      .expect(422)
     });
 
     it('should return error message if required fields are blank', () => {
