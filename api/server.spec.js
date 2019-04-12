@@ -21,7 +21,7 @@ describe("server.js", () => {
   };
 
   describe("GET /", () => {
-    it("should return 200 OK status code", () => {
+    it("should return 200 OK status code on success", () => {
       return request(server)
         .get("/")
         .expect(200);
@@ -45,14 +45,14 @@ describe("server.js", () => {
   });
 
   describe("POST /api/games", () => {
-    it("should return 201 OK status code with all data", () => {
+    it("should return 201 OK status code on success", () => {
       return request(server)
         .post("/api/games")
         .send(pacman)
         .expect(201);
     });
 
-    it("should return 201 OK status even with missing year", () => {
+    it("should return 201 OK status even with missing release year", () => {
       return request(server)
         .post("/api/games")
         .send({ ...pacman, releaseYear: null })
@@ -117,7 +117,7 @@ describe("server.js", () => {
         });
     });
 
-    it("should return created game", () => {
+    it("should return created game on sucess", () => {
       return request(server)
         .post("/api/games")
         .send({ ...pacman })
@@ -166,7 +166,7 @@ describe("server.js", () => {
   });
 
   describe('GET /api/games/:id', () => {
-    it("should return 200 OK status code", async () => {
+    it("should return 200 OK status code on success", async () => {
       await request(server)
         .post("/api/games")
         .send(pacman);
@@ -186,7 +186,7 @@ describe("server.js", () => {
         .expect("Content-Type", /json/);
     });
 
-    it("should return 404 status code", async () => {
+    it("should return 404 status code if no game is found", async () => {
       return request(server)
         .get("/api/games/1")
         .expect(404);
